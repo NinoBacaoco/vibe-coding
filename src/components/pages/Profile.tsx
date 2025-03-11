@@ -16,7 +16,7 @@ const mockUserData = {
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const [userData, setUserData] = useState(mockUserData);
+  const [userData, _setUserData] = useState(mockUserData);
   const [activeTab, setActiveTab] = useState<'profile' | 'preferences' | 'subscription'>('profile');
 
   const handleSave = () => {
