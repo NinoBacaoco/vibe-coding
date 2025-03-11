@@ -2,6 +2,119 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply antialiased;
+  }
+  
+  /* Ensure input text is visible in both modes with higher specificity */
+  html:not(.dark) input,
+  html:not(.dark) textarea,
+  html:not(.dark) select,
+  html:not(.dark) option {
+    color: black !important;
+    background-color: white !important;
+  }
+
+  html.dark input,
+  html.dark textarea,
+  html.dark select,
+  html.dark option {
+    color: white !important;
+    background-color: rgba(17, 24, 39, 0.7) !important;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply relative px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-purple-500;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 transition-all duration-300 opacity-0;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full opacity-100;
+  }
+
+  .nav-link-special {
+    @apply px-4 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 hover:opacity-90;
+  }
+
+  .mobile-nav-link {
+    @apply block px-3 py-2 text-base font-medium transition-all duration-300 hover:text-purple-500 rounded-md hover:bg-purple-500/5;
+  }
+
+  /* Card styles */
+  .card {
+    @apply relative overflow-hidden rounded-xl backdrop-blur-lg transition-all duration-300 border;
+  }
+
+  .dark .card {
+    @apply bg-gray-900/40 hover:bg-gray-900/60 border-gray-800/50;
+  }
+
+  .light .card {
+    @apply bg-white/40 hover:bg-white/60 border-gray-200/50;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 hover:opacity-90;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-full border-2 border-gray-300/50 dark:border-gray-700/50 font-medium transition-all duration-300 hover:border-purple-500/50 hover:text-purple-500 hover:scale-105;
+  }
+
+  /* Input styles */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 backdrop-blur-lg;
+  }
+
+  .dark .input-field {
+    @apply bg-gray-900/40 border-gray-800/50 focus:bg-gray-900/60 text-white placeholder-gray-400;
+  }
+
+  .light .input-field {
+    @apply bg-white border-gray-200 focus:bg-white text-black placeholder-gray-500;
+  }
+
+  /* Form label styles */
+  .form-label {
+    @apply block mb-2 text-sm font-medium;
+  }
+
+  .dark .form-label {
+    @apply text-white;
+  }
+
+  .light .form-label {
+    @apply text-gray-900;
+  }
+
+  /* Animation utilities */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/25;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-transparent bg-clip-text;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar {
+    @apply scrollbar-thin scrollbar-track-transparent dark:scrollbar-thumb-gray-700 scrollbar-thumb-gray-300;
+  }
+}
+
 /* Custom styles */
 body {
   margin: 0;
@@ -53,11 +166,15 @@ body {
   border-radius: 3px;
 }
 
+.dark .overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #374151;
+}
+
 /* Transitions */
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition-duration: 300ms;
 }
 
 /* Focus styles */
@@ -70,4 +187,13 @@ body {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+/* Additional overrides for input text colors */
+input, select, textarea, option, select option {
+  color: black !important;
+}
+
+.dark input, .dark select, .dark textarea, .dark option, .dark select option {
+  color: white !important;
 }

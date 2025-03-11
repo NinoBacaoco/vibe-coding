@@ -1,0 +1,84 @@
+/* Form Styles */
+
+/* Base input styles */
+input, select, textarea {
+  color: #000000 !important; /* Black text in light mode */
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode overrides */
+.dark input, 
+.dark select, 
+.dark textarea {
+  color: #ffffff !important; /* White text in dark mode */
+  background-color: rgba(17, 24, 39, 0.7);
+  border-color: #374151;
+}
+
+/* Focus states */
+input:focus, 
+select:focus, 
+textarea:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+/* Placeholder styling */
+::placeholder {
+  color: #9ca3af !important;
+  opacity: 0.8;
+}
+
+.dark ::placeholder {
+  color: #6b7280 !important;
+  opacity: 0.8;
+}
+
+/* Form labels */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #000000; /* Black in light mode */
+}
+
+.dark label {
+  color: #ffffff; /* White in dark mode */
+}
+
+/* Form group spacing */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Error states */
+.input-error {
+  border-color: #ef4444 !important;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Disabled state */
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background-color: #f3f4f6;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.dark input:disabled,
+.dark select:disabled,
+.dark textarea:disabled {
+  background-color: rgba(31, 41, 55, 0.5);
+} 
