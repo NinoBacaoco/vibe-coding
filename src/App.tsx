@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import './App.css';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import Home from './components/pages/Home';
+import Dashboard from './components/pages/Dashboard';
+import MentorSearch from './components/pages/MentorSearch';
+import AIChat from './components/pages/AIChat';
+import Profile from './components/pages/Profile';
+import Login from './components/pages/Login';
+import Register from './components/pages/Register';
+import Onboarding from './components/pages/Onboarding';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Mock login function for prototype
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="min-h-screen flex flex-col">
+        <Navbar isAuthenticated={isAuthenticated} />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login onLogin={handleLogin} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/onboarding" element={<Onboarding />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/mentors" element={<MentorSearch />} />
+            <Route path="/ai-chat" element={<AIChat />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
